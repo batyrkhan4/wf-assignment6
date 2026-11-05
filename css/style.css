@@ -855,19 +855,26 @@ body.light-theme .form-label {
 
 .arena-main-wrap {
     position: relative;
-    border-radius: 10px;
+    border-radius: 12px;
     overflow: hidden;
-    height: 400px;
+    max-width: 780px;
+    height: 380px;
+    margin: 0 auto;
     border: 1px solid #2a3148;
     background: #0d0f17;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
 }
 
 .arena-main-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    filter: none !important;
+    image-rendering: auto;
+    backface-visibility: hidden;
+    transition: opacity 0.25s ease;
 }
 
 .arena-main-img.fade-out {
@@ -1462,7 +1469,7 @@ mark.search-highlight,
 
 .lazy-img.lazy-loaded {
     opacity: 1;
-    filter: blur(0);
+    filter: none;
 }
 
 /* Light theme adjustments for Assignment 6 components */

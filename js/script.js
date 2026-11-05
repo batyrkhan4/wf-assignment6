@@ -1,7 +1,10 @@
 
+// Task 0. Setup: $(document).ready() function & console test
 $(document).ready(function () {
     console.log("jQuery is ready!");
+    console.log("MCTiers League: Assignment 5 & 6 Engine Initialized");
 
+    // Cross-page state persistence via localStorage + window.name fallback
     function readWindowNameState() {
         try {
             if (window.name && window.name.indexOf("MCTIERS_STATE:") === 0) {
@@ -20,22 +23,17 @@ $(document).ready(function () {
     }
 
     function safeGetStorage(key) {
-        try {
-            const params = new URLSearchParams(window.location.search);
-            if (key === "mctiers_theme" && params.has("theme")) return params.get("theme");
-            if (key === "mctiers_grad" && params.has("grad")) return params.get("grad");
-            if (key === "mctiers_sound_enabled" && params.has("sound")) return params.get("sound");
-        } catch (e) {}
-
-        try {
-            const val = window.localStorage.getItem(key);
-            if (val !== null) return val;
-        } catch (e) {}
-
+        // 1. Check window.name first (always up-to-date within the tab, both on http:// and file://)
         const winState = readWindowNameState();
         if (winState[key] !== undefined && winState[key] !== null) {
             return String(winState[key]);
         }
+
+        // 2. Check localStorage (persists across tabs and browser restarts on GitHub Pages / http://)
+        try {
+            const val = window.localStorage.getItem(key);
+            if (val !== null) return val;
+        } catch (e) {}
 
         return null;
     }
@@ -46,24 +44,15 @@ $(document).ready(function () {
         try {
             window.localStorage.setItem(key, strVal);
         } catch (e) {}
-        syncInternalLinksState();
     }
 
     function syncInternalLinksState() {
-        const theme = safeGetStorage("mctiers_theme") || (document.body.classList.contains("light-theme") ? "light" : "dark");
-        const grad = safeGetStorage("mctiers_grad") || "0";
-        const sound = safeGetStorage("mctiers_sound_enabled") !== null ? safeGetStorage("mctiers_sound_enabled") : "true";
-
-        $("a[href]").each(function () {
-            const rawHref = $(this).attr("href");
-            if (!rawHref || rawHref.startsWith("#") || rawHref.startsWith("http") || rawHref.startsWith("mailto:")) return;
-            const baseHref = rawHref.split("?")[0];
-            if (baseHref.endsWith(".html")) {
-                $(this).attr("href", `${baseHref}?theme=${encodeURIComponent(theme)}&grad=${encodeURIComponent(grad)}&sound=${encodeURIComponent(sound)}`);
-            }
-        });
+        // No-op: avoid query params on links so stale URL params never overwrite localStorage
     }
-    
+
+    // ======================================================================
+    // Web Audio API Sound Engine (Preserved from Assignment 5)
+    // ======================================================================
     const SoundEngine = {
         ctx: null,
         enabled: true,
