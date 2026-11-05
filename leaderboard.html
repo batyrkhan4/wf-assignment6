@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Minecraft PvP Championship</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>');</script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+    <!-- Task 4: Colorful and Stylized Scroll Progress Bar -->
+    <div id="scrollProgressContainer" class="scroll-progress-container" aria-hidden="true">
+        <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Task 7: Notification System (Toast Container) -->
+    <div id="toastContainer" class="toast-notification-container" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="page d-flex flex-column min-vh-100">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid px-sm-2 px-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                        <img src="images/logo.png" alt="MCTiers League logo" class="logo-img">
+                        <span>MCTiers League</span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="mainNav">
+                        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="leaderboard.html" aria-current="page">Leaderboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Registration</a>
+                            </li>
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <div class="nav-actions-container">
+                                    <button type="button" id="soundToggleBtn" class="nav-action-btn" aria-pressed="true">
+                                        🔊 Sound: On
+                                    </button>
+                                    <button type="button" id="themeToggleBtn" class="nav-action-btn">
+                                        🌙 Theme: Night
+                                    </button>
+                                    <button type="button" id="changeThemeBtn" class="nav-action-btn">
+                                        🎨 Colors
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container-fluid flex-grow-1 py-4 px-sm-3 px-lg-5">
+            <main>
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                    <div>
+                        <h1 class="display-6 fw-bold text-white mb-1">Official Player Rankings</h1>
+                        <p class="text-muted mb-0">Live tier test ratings with jQuery real-time search, autocomplete suggestions, keyword highlighting &amp; animated stats.</p>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <div class="copy-snippet-row bg-dark border border-secondary rounded px-2 py-1">
+                            <code id="lbCommandSnippet" class="copy-snippet-code me-2">/rankings top-10</code>
+                            <button type="button" class="btn-copy-snippet" data-copy-target="#lbCommandSnippet" aria-label="Copy Rankings Command">
+                                <span class="copy-icon">📋</span> <span class="copy-text">Copy Cmd</span>
+                                <span class="copy-tooltip">Copied to clipboard!</span>
+                            </button>
+                        </div>
+                        <a href="contact.html" class="btn btn-primary fw-bold">Sign Up for Tier Test</a>
+                    </div>
+                </div>
+
+                <!-- Task 5: Animated Number Counter on Leaderboard Stats -->
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="stat-card">
+                            <div id="statTotalPoints" class="stat-num">0</div>
+                            <div class="stat-label">Total League Points</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="stat-card">
+                            <div id="statTopScore" class="stat-num text-warning">—</div>
+                            <div class="stat-label">#1 Rank Champion</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="stat-card">
+                            <div id="statPlayerCount" class="stat-num text-success">0</div>
+                            <div class="stat-label">Verified Contenders</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
+                        <div class="stat-card">
+                            <div id="statTotalWins" class="stat-num text-info counter-num" data-target="1143" data-suffix=" Wins">0</div>
+                            <div class="stat-label">Official Matches Won</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task 1, Task 2 & Task 3: Real-time Search, Autocomplete Suggestions & Highlighting -->
+                <div class="card bg-dark border-secondary p-3 mb-4">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-5">
+                            <div class="search-autocomplete-wrapper">
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary text-info">🔍</span>
+                                    <input type="text" id="leaderboardSearch" class="form-control" placeholder="Search player IGN, country, tier or kit..." autocomplete="off" aria-label="Search players">
+                                    <button type="button" id="clearLbSearchBtn" class="btn btn-outline-secondary" title="Clear search">✕</button>
+                                </div>
+                                <ul id="leaderboardAutocomplete" class="autocomplete-dropdown" role="listbox" aria-label="Player search suggestions"></ul>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="d-flex flex-wrap gap-2 justify-content-md-end" role="group" aria-label="Discipline filter">
+                                <button type="button" class="btn-discipline-filter btn-lb-filter active" data-discipline="All">All</button>
+                                <button type="button" class="btn-discipline-filter btn-lb-filter" data-discipline="Sword">⚔️ Sword</button>
+                                <button type="button" class="btn-discipline-filter btn-lb-filter" data-discipline="Axe">🪓 Axe</button>
+                                <button type="button" class="btn-discipline-filter btn-lb-filter" data-discipline="Crystal">🔮 Crystal</button>
+                                <button type="button" class="btn-discipline-filter btn-lb-filter" data-discipline="Pot">🧪 Pot</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive rounded border border-secondary shadow-sm">
+                    <table class="table table-dark table-hover align-middle mb-0">
+                        <thead class="leaderboard-thead">
+                            <tr>
+                                <th># Rank</th>
+                                <th>Player IGN</th>
+                                <th>Country</th>
+                                <th>Rating / Tier</th>
+                                <th>Main Kit</th>
+                                <th>Official Wins</th>
+                                <th>Copy Tag</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+
+        <footer class="py-4 text-center mt-auto bg-dark border-top border-secondary">
+            <div class="container">
+                <p class="mb-1 text-light">Created by: Batyrkhan Uvayev &amp; Yermek Sain | MCTiers League 2026</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

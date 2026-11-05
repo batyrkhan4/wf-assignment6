@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Minecraft PvP Championship</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>');</script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+
+    <!-- Task 4: Colorful and Stylized Scroll Progress Bar -->
+    <div id="scrollProgressContainer" class="scroll-progress-container" aria-hidden="true">
+        <div id="scrollProgressBar" class="scroll-progress-bar"></div>
+    </div>
+
+    <!-- Task 7: Notification System (Toast Container) -->
+    <div id="toastContainer" class="toast-notification-container" aria-live="polite" aria-atomic="true"></div>
+
+    <div class="page d-flex flex-column min-vh-100">
+
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main navigation">
+                <div class="container-fluid px-sm-2 px-lg-4">
+                    <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                        <img src="images/logo.png" alt="MCTiers League logo" class="logo-img">
+                        <span>MCTiers League</span>
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+                        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="mainNav">
+                        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="leaderboard.html">Leaderboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="about.html" aria-current="page">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Registration</a>
+                            </li>
+                            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                                <div class="nav-actions-container">
+                                    <button type="button" id="soundToggleBtn" class="nav-action-btn" aria-pressed="true">
+                                        🔊 Sound: On
+                                    </button>
+                                    <button type="button" id="themeToggleBtn" class="nav-action-btn">
+                                        🌙 Theme: Night
+                                    </button>
+                                    <button type="button" id="changeThemeBtn" class="nav-action-btn">
+                                        🎨 Colors
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="container-fluid flex-grow-1 py-4 px-sm-3 px-lg-5">
+            <main class="col-12">
+
+                <div class="text-center mb-4">
+                    <h1 class="display-6 fw-bold text-white mb-2">About the Championship Team</h1>
+                    <p class="text-muted mx-auto" style="max-width: 750px;">
+                        We are a team of web developers and competitive Minecraft PvP organizers dedicated to 
+                        providing fair matchmaking, official tier evaluations, and seamless esports tournament management.
+                    </p>
+                </div>
+
+                <!-- Task 5: Animated Number Counters on About Page -->
+                <div class="row g-3 mb-5 mx-auto" style="max-width: 900px;">
+                    <div class="col-sm-4">
+                        <div class="stat-card">
+                            <div class="stat-num counter-num" data-target="15400" data-suffix="+">0</div>
+                            <div class="stat-label">Ranked Duels Hosted</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="stat-card">
+                            <div class="stat-num text-warning counter-num" data-target="24" data-suffix="/7">0</div>
+                            <div class="stat-label">Anti-Cheat Monitoring</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="stat-card">
+                            <div class="stat-num text-success counter-num" data-target="99" data-suffix="%">0</div>
+                            <div class="stat-label">Player Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task 9: Lazy Loaded Team Avatars -->
+                <div class="row g-4 mb-5" id="aboutTeamSection">
+                    <div class="col-md-6">
+                        <div class="team-member p-4 h-100 searchable-faq-area">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23141824'/%3E%3C/svg%3E"
+                                data-src="images/profile1.jpg"
+                                alt="Batyrkhan Uvayev"
+                                class="member-avatar lazy-img">
+                            <div>
+                                <h3 class="h4 text-info mb-1">Batyrkhan Uvayev</h3>
+                                <p class="mb-2"><strong>Role:</strong> Lead Organizer &amp; Web Developer</p>
+                                <p class="mb-2 text-muted small">
+                                    Architected the main tournament hub, event listeners, dynamic arena showcase, jQuery search engine, and interactive audio feedback engine.
+                                </p>
+                                <div class="copy-snippet-row d-inline-flex bg-dark border border-secondary rounded px-2 py-1">
+                                    <code id="devEmail1" class="copy-snippet-code me-2">batyrkhan@mctiersleague.net</code>
+                                    <button type="button" class="btn-copy-snippet" data-copy-target="#devEmail1" aria-label="Copy Batyrkhan Email">
+                                        <span class="copy-icon">📋</span> <span class="copy-text">Copy</span>
+                                        <span class="copy-tooltip">Copied to clipboard!</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="team-member p-4 h-100 searchable-faq-area">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='%23141824'/%3E%3C/svg%3E"
+                                data-src="images/profile2.png"
+                                alt="Yermek Sain"
+                                class="member-avatar lazy-img">
+                            <div>
+                                <h3 class="h4 text-info mb-1">Yermek Sain</h3>
+                                <p class="mb-2"><strong>Role:</strong> Co-Developer &amp; System Architect</p>
+                                <p class="mb-2 text-muted small">
+                                    Implemented the multi-step registration wizard, state callbacks, leaderboard filtering logic, jQuery UX engagement widgets, and responsive CSS theme styling.
+                                </p>
+                                <div class="copy-snippet-row d-inline-flex bg-dark border border-secondary rounded px-2 py-1">
+                                    <code id="devEmail2" class="copy-snippet-code me-2">yermek@mctiersleague.net</code>
+                                    <button type="button" class="btn-copy-snippet" data-copy-target="#devEmail2" aria-label="Copy Yermek Email">
+                                        <span class="copy-icon">📋</span> <span class="copy-text">Copy</span>
+                                        <span class="copy-tooltip">Copied to clipboard!</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task 1, Task 2 & Task 3: FAQ Live Search, Autocomplete & Keyword Highlighting -->
+                <section class="faq-section mb-5" aria-label="Frequently asked questions">
+                    <h2 class="faq-title mb-2">Frequently Asked Questions</h2>
+                    <p class="text-center text-muted mb-4">
+                        Type a keyword below to live-filter FAQs and highlight matching words across the page using jQuery regex &amp; <code>.html()</code>:
+                    </p>
+
+                    <div class="search-autocomplete-wrapper mx-auto mb-4" style="max-width: 600px;">
+                        <div class="input-group">
+                            <span class="input-group-text bg-dark border-secondary text-info">🔎</span>
+                            <input type="text" id="faqSearchInput" class="form-control" placeholder="Search FAQs &amp; highlight keywords (e.g. tier, Sword, Crystal, Discord)..." autocomplete="off" aria-label="Search FAQs and highlight keywords">
+                            <button type="button" id="clearFaqSearchBtn" class="btn btn-outline-secondary" title="Clear FAQ search">✕</button>
+                        </div>
+                        <ul id="faqAutocompleteList" class="autocomplete-dropdown" role="listbox" aria-label="FAQ search suggestions"></ul>
+                        <div id="faqHighlightStatus" class="small text-info mt-2 text-center" style="min-height: 20px;"></div>
+                    </div>
+
+                    <div class="faq-container" id="faqAccordionContainer">
+
+                        <div class="faq-item searchable-faq-area">
+                            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-1">
+                                <span class="faq-q-text">What is MCTiers League?</span>
+                                <span class="faq-icon" aria-hidden="true">+</span>
+                            </button>
+
+                            <div class="faq-answer" id="faq-answer-1" aria-hidden="true">
+                                <div class="faq-answer-inner">
+                                    <p class="faq-a-text">
+                                        MCTiers League is an official platform ranking Minecraft PvP players across various combat tiers (HT1, LT1, HT2, LT2) and organizing high-stakes seasonal tournaments.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item searchable-faq-area">
+                            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-2">
+                                <span class="faq-q-text">What PvP disciplines are supported?</span>
+                                <span class="faq-icon" aria-hidden="true">+</span>
+                            </button>
+
+                            <div class="faq-answer" id="faq-answer-2" aria-hidden="true">
+                                <div class="faq-answer-inner">
+                                    <p class="faq-a-text">The championship officially tests and ranks Sword 1.9+, Axe &amp; Shield PvP, End Crystal combat, and traditional Pot PvP (Nodebuff).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item searchable-faq-area">
+                            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-3">
+                                <span class="faq-q-text">How can I register for an official tier evaluation?</span>
+                                <span class="faq-icon" aria-hidden="true">+</span>
+                            </button>
+
+                            <div class="faq-answer" id="faq-answer-3" aria-hidden="true">
+                                <div class="faq-answer-inner">
+                                    <p class="faq-a-text">Head to our Registration page and complete the 3-step wizard to have your Minecraft IGN and Discord tag reviewed by an official tier tester.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="faq-item searchable-faq-area">
+                            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-answer-4">
+                                <span class="faq-q-text">Which Minecraft clients and mods are allowed in tournaments?</span>
+                                <span class="faq-icon" aria-hidden="true">+</span>
+                            </button>
+
+                            <div class="faq-answer" id="faq-answer-4" aria-hidden="true">
+                                <div class="faq-answer-inner">
+                                    <p class="faq-a-text">Players may use Vanilla Minecraft, Lunar Client, Badlion Client, or Feather Client with standard HUD mods. Any macro, autoclicker, or reach modification is strictly prohibited.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <div class="subscribe-section my-5">
+                    <h3 class="h4 text-white mb-2">Stay Connected with Tournament Alerts</h3>
+                    <p class="text-muted mb-3">Join our newsletter to receive tournament dates, bracket announcements, and tier testing timeslots.</p>
+                    <button type="button" id="openSubscribe" class="subscribe-btn">
+                        📬 Open Subscription Modal
+                    </button>
+                </div>
+
+            </main>
+        </div>
+
+        <div class="subscribe-overlay" id="subscribeOverlay" aria-hidden="true">
+            <div class="subscribe-popup" role="dialog" aria-modal="true" aria-labelledby="subscribeTitle">
+                <button type="button" id="closeSubscribe" class="subscribe-close" aria-label="Close">&times;</button>
+
+                <h2 id="subscribeTitle">Subscribe to MCTiers League</h2>
+                <p>Get instant email alerts about upcoming Minecraft PvP tournament brackets and tier test schedules.</p>
+
+                <form id="subscribeForm" novalidate>
+                    <label for="subscribeEmail">Email address</label>
+                    <input type="email" inputmode="email" id="subscribeEmail" autocomplete="email" placeholder="player@domain.com">
+                    <p id="subscribeError" class="subscribe-error"></p>
+                    <p id="subscribeMessage" class="subscribe-success" role="status" aria-live="polite"></p>
+                    <!-- Task 6: Loading Spinner on Submit -->
+                    <button type="submit" id="subscribeSubmitBtn" class="subscribe-btn w-100 mt-3">Subscribe Now</button>
+                </form>
+            </div>
+        </div>
+
+
+        <footer class="py-4 text-center mt-auto bg-dark border-top border-secondary">
+            <div class="container">
+                <p class="mb-1 text-light">Created by: Batyrkhan Uvayev &amp; Yermek Sain | MCTiers League 2026</p>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
